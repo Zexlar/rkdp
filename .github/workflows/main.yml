@@ -16,9 +16,9 @@ jobs:
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 0
-    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
+    - run: Set-LocalUser -Name "runner" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
     - name: Start ngrok in the background
-      run: Start-Process -FilePath ".\ngrok\ngrok.exe" -ArgumentList "tcp 3389"
+      run: Start-Process -FilePath ".\ngrok\ngrok.exe" -ArgumentList "tcp 3333"
     - name: Wait for ngrok to start
       run: Start-Sleep -Seconds 5
     - name: Get ngrok tunnel information
